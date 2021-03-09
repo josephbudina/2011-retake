@@ -10,6 +10,10 @@
   </section>
 <% end %>
 
+<section id="register_team">
+  <%= link_to 'Register New Team', new_competition_team_path(@competition)%>
+</section>
+
 <section id="average_player_age">
   <h2>Average Age of All Players</h2><br>
   <h3><%= @competition.average_players_age %></h3>

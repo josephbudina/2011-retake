@@ -5,11 +5,15 @@ describe 'Competition Index Page' do
     @state = Competition.create(name: "State", location: "London", sport: "ball sport")
     visit competitions_path
 
-    expect(page).to have_link('Regional')
-    expect(page).to have_link('State')
+    within "#comp_id-#{@regional.id}" do
+      expect(page).to have_link('Regional')
+      click_link 'Regional'
+      expect(current_path).to eq(competition_path(@regional))
+    end
 
-    click_link 'Regional'
-
-    expect(current_path).to eq(competition_path(@regional))
+    visit competitions_path
+    within "#comp_id-#{@state.id}" do
+      expect(page).to have_link('State')
+    end
   end
 end

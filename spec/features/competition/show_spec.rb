@@ -34,4 +34,21 @@ describe 'Competition Show Page' do
       expect(page).to have_content('23')
     end
   end
+
+  it 'sees link to register a new team' do
+    @regional = Competition.create(name: "Regional", location: "Chicago", sport: "ball sport")
+    @cats = @regional.teams.create(hometown: "meowtown", nickname: "Cats")
+    @dogs = @regional.teams.create(hometown: "barkburg", nickname: "Dogs")
+    @doug = @cats.players.create(name: "Doug", age: 22)
+    @katy = @cats.players.create(name: "Katy", age: 23)
+    @andrew = @cats.players.create(name: "Andrew", age: 24)
+    visit competition_path(@regional)
+
+    expect(page).to_not have_content("Birds")
+    expect(page).to_not have_content("Sky")
+    expect(page).to have_link('Register New Team')
+    click_link "Register New Team"
+
+    expect(current_path).to eq(new_competition_team_path(@regional))
+  end
 end
