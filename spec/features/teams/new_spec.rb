@@ -8,7 +8,7 @@ describe 'Competition New Page' do
     @katy = @cats.players.create(name: "Katy", age: 23)
     @andrew = @cats.players.create(name: "Andrew", age: 24)
     visit new_competition_team_path(@regional)
-    save_and_open_page
+
     fill_in 'Nickname', with: 'Birds'
     fill_in 'Hometown', with: 'Sky'
 
