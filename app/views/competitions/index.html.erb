@@ -1,4 +1,6 @@
 <h1>Competitions</h1><br>
 <% @competitions.each do |competition| %>
-<%= link_to competition.name, competition_path(competition) %><br>
+  <section id="comp_id-<%= competition.id %>  ">
+    <%= link_to competition.name, competition_path(competition) %><br>
+  </section>
 <% end %>
